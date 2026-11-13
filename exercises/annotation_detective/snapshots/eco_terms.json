@@ -1,0 +1,14 @@
+{
+ "ECO:0000250": "sequence similarity evidence used in manual assertion",
+ "ECO:0000255": "match to sequence model evidence used in manual assertion",
+ "ECO:0000256": "match to sequence model evidence used in automatic assertion",
+ "ECO:0000259": "match to InterPro member signature evidence used in automatic assertion",
+ "ECO:0000269": "experimental evidence used in manual assertion",
+ "ECO:0000303": "author statement without traceable support used in manual assertion",
+ "ECO:0000305": "curator inference used in manual assertion",
+ "ECO:0000313": "imported information used in automatic assertion",
+ "ECO:0000314": "direct assay evidence used in manual assertion",
+ "ECO:0006056": "high throughput evidence used in manual assertion",
+ "ECO:0007744": "combinatorial computational and experimental evidence used in manual assertion",
+ "ECO:0007829": "combinatorial computational and experimental evidence used in automatic assertion"
+}
