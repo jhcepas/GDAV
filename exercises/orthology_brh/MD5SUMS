@@ -1,0 +1,10 @@
+b2970fddfaef8781f062c0089753b26b  aaah_family.faa
+1be25af1b32aac3f02a8e048220a1bca  queries/CIOIN_TPH.faa
+2da6c0c4743aec9bc713a5224d0cc564  queries/DANRE_tph1a.faa
+39da7a0b042df64af99526496ea5f229  queries/HUMAN_TPH2.faa
+08c9c8175ca58e44d71e26fa17cc61b5  queries/LOXAF_G3T0S8.faa
+b48749154ace0efd00b005de7a448e09  get_data.sh
+33b193f5c8f8e5e6318faef90d8fccb3  build_proteome.py
+b3613b74403f509eaf5ffe6bbb7cebb2  coverage.py
+f66e8193226babaa42efe2e713842768  4proteomes.faa
+a6db7a14605ed826c61e3e1c869cd91d  data/4proteomes.faa.gz

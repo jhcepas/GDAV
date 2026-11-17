@@ -1,0 +1,8 @@
+9346dffe8e13c347c1bed32a509667b7  extract_hits.py
+a8e6c9a91ddcb8c502c07ca07e3b214f  root_tree.py
+fa15ec580cc108fe03d924a23efa2244  queries/HUMAN_TP53.faa
+39da7a0b042df64af99526496ea5f229  queries/HUMAN_TPH2.faa
+0645cebd854f68450130191e24527927  backup/TP53_homologs.aln
+ac904fa79072a711bd4d9cbd707bf725  backup/TP53_homologs.aln.treefile
+f13ea595c479bd94a628f6b23a06fbe5  backup/TPH2_homologs.aln
+0570edb16f75f8e7ee60da7ba6c72aa4  backup/TPH2_homologs.aln.treefile
