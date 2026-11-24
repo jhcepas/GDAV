@@ -13,20 +13,20 @@ human, African elephant, zebrafish and *Ciona*, one canonical protein per gene; 
 | `queries/HUMAN_TPH2.faa` | human TPH2, Ensembl ENSP00000329093 (gene ENSG00000139287), 490 aa (Goal 1). Same file as `../orthology_brh/queries/HUMAN_TPH2.faa` |
 | `queries/HUMAN_TP53.faa` | human TP53, Ensembl ENSP00000269305 (gene ENSG00000141510), 393 aa, identical to UniProt P04637 (Goal 2) |
 | `extract_hits.py` | BLAST tabular hits → FASTA of the hit sequences, taken from the proteome (plain or `.gz`) |
-| `root_tree.py` | roots a Newick tree (midpoint, or outgroup given by name fragments) and draws it as text with the support values; can save the rooted tree |
+| `view_tree.py` | draws a Newick tree (or, from Python, an ete4 `Tree`) as ASCII text with the support values at the internal nodes; `--dist` adds branch lengths (needs ete4) |
 | `backup/` | the alignments and IQ-TREE trees of the wiki page (`TPH2_homologs.aln`, `TP53_homologs.aln` and their `.treefile`), for whoever cannot run MAFFT or IQ-TREE |
 | `MD5SUMS` | checksums of the files of this folder |
 
-Both scripts use the **Python 3 standard library only** (no ete3, no Biopython). `root_tree.py` does what
-`ete3` did in previous years (`set_outgroup`, `get_midpoint_outgroup`, `ete3 view --text`): ete3 3.1.3 no
-longer imports on Python ≥ 3.13 without extra packages, so the exercise does not depend on it. Midpoint
-rooting places the root exactly halfway along the longest leaf-to-leaf path; the topology is identical to
-ete3's midpoint rooting (checked on both trees of the exercise).
+`extract_hits.py` uses the Python 3 standard library only. Trees are rooted and saved with
+[ete4](https://etetoolkit.github.io/ete/) in Python (code on the wiki page) and drawn with `view_tree.py`
+(same text layout as the former `ete3 view --text`). The current conda-forge
+package `ete4` 4.4.0 declares `brotli` instead of `brotli-python` and fails on import (`No module named
+'brotli'`): install `brotli-python` with it.
 
 ## Use
 
 ```bash
-conda install -c conda-forge -c bioconda blast mafft "iqtree>=3"     # into your own environment
+conda install -c conda-forge -c bioconda blast mafft "iqtree>=3" ete4 brotli-python   # into your own environment
 gunzip -c ../orthology_brh/data/4proteomes.faa.gz > 4proteomes.faa
 makeblastdb -dbtype prot -in 4proteomes.faa -out 4proteomes.blastdb
 blastp -task blastp -query queries/HUMAN_TPH2.faa -db 4proteomes.blastdb -evalue 0.001 \
@@ -34,8 +34,7 @@ blastp -task blastp -query queries/HUMAN_TPH2.faa -db 4proteomes.blastdb -evalue
 python3 extract_hits.py TPH2_homologs.tsv 4proteomes.faa > TPH2_homologs.faa
 mafft --auto TPH2_homologs.faa > TPH2_homologs.aln
 iqtree3 -s TPH2_homologs.aln -m MFP -B 1000 --seed 12345 -T 1
-python3 root_tree.py TPH2_homologs.aln.treefile                                   # midpoint
-python3 root_tree.py TPH2_homologs.aln.treefile --outgroup 'TH,th,PAH,pah,ENSCING00000006533'
+python3 view_tree.py TPH2_homologs.aln.treefile          # rooting with ete4: see the wiki page
 ```
 
 ## Versions used for the results on the wiki (2026-11-17)
@@ -46,9 +45,11 @@ python3 root_tree.py TPH2_homologs.aln.treefile --outgroup 'TH,th,PAH,pah,ENSCIN
 | MAFFT | 7.526 (2024/Apr/26) | official Linux portable package (mafft.cbrc.jp) |
 | IQ-TREE | 3.1.4 | official Linux release (github.com/iqtree/iqtree3) |
 | Python | 3.14 (scripts work with any Python ≥ 3.6) | |
+| ete4 | 4.4.0 | conda-forge (+ `brotli-python`) |
 
 Re-run on 2026-11-24 with the conda packages (bioconda `blast` 2.17.0 and `iqtree` 3.1.4, conda-forge `mafft`
-7.526): identical alignments and `.treefile`s to those in `backup/`.
+7.526): identical alignments and `.treefile`s to those in `backup/`. ete4 rooting gives the same
+topologies and support values as the former `root_tree.py`.
 
 Real outputs (same seed, same thread count → identical trees; seeds 1, 2, 3 gave the same topology and
 UFBoot values within ±4):
