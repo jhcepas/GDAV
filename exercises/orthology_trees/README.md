@@ -26,6 +26,7 @@ ete3's midpoint rooting (checked on both trees of the exercise).
 ## Use
 
 ```bash
+conda install -c conda-forge -c bioconda blast mafft "iqtree>=3"     # into your own environment
 gunzip -c ../orthology_brh/data/4proteomes.faa.gz > 4proteomes.faa
 makeblastdb -dbtype prot -in 4proteomes.faa -out 4proteomes.blastdb
 blastp -task blastp -query queries/HUMAN_TPH2.faa -db 4proteomes.blastdb -evalue 0.001 \
@@ -45,6 +46,9 @@ python3 root_tree.py TPH2_homologs.aln.treefile --outgroup 'TH,th,PAH,pah,ENSCIN
 | MAFFT | 7.526 (2024/Apr/26) | official Linux portable package (mafft.cbrc.jp) |
 | IQ-TREE | 3.1.4 | official Linux release (github.com/iqtree/iqtree3) |
 | Python | 3.14 (scripts work with any Python ≥ 3.6) | |
+
+Re-run on 2026-11-24 with the conda packages (bioconda `blast` 2.17.0 and `iqtree` 3.1.4, conda-forge `mafft`
+7.526): identical alignments and `.treefile`s to those in `backup/`.
 
 Real outputs (same seed, same thread count → identical trees; seeds 1, 2, 3 gave the same topology and
 UFBoot values within ±4):
