@@ -13,7 +13,6 @@ Material for the wiki page
 | `data/4proteomes.faa.gz` | **the four proteomes, ready to use** (82,853 proteins, 24.6 MB compressed, `gzip -9 -n`) |
 | `get_data.sh` | *optional*: how the data were built (downloads Ensembl release 116 and rebuilds `4proteomes.faa`) |
 | `build_proteome.py` | keeps one protein per gene (Ensembl canonical), used by `get_data.sh` |
-| `coverage.py` | adds query/subject coverage to BLAST tabular output; `--best` keeps the best hit per species |
 | `MD5SUMS` | checksums of the files of this folder, of `data/4proteomes.faa.gz` and of the uncompressed `4proteomes.faa` |
 
 All scripts use bash and the Python 3 standard library only.
